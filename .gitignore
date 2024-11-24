@@ -9,3 +9,5 @@ logs/
 build.number
 run
 .vscode
+/libs/
+/.idea/

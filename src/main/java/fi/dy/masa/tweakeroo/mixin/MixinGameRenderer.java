@@ -1,7 +1,6 @@
 package fi.dy.masa.tweakeroo.mixin;
 
 import java.util.function.Predicate;
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
@@ -71,7 +70,7 @@ public abstract class MixinGameRenderer
         }
     }
 
-    @ModifyExpressionValue(method = "getFov", at = @At(value = "CONSTANT", args = "doubleValue=70.0"))
+    @ModifyConstant(method = "getFov", constant = @Constant(doubleValue = 70.0))
     private double applyFreeCameraFov(double original)
     {
         if (FeatureToggle.TWEAK_FREE_CAMERA.getBooleanValue())
@@ -88,17 +87,17 @@ public abstract class MixinGameRenderer
         return !FeatureToggle.TWEAK_FREE_CAMERA.getBooleanValue() && value;
     }
 
-    @ModifyExpressionValue(
+    @Redirect(
             method = "getFov",  at = @At(value = "INVOKE",
             target = "Lnet/minecraft/client/render/Camera;getSubmersionType()Lnet/minecraft/client/render/CameraSubmersionType;"))
-    private CameraSubmersionType ignoreSubmersionTypeOnFreeCamera(CameraSubmersionType original)
+    private CameraSubmersionType ignoreSubmersionTypeOnFreeCamera(Camera instance)
     {
         if (FeatureToggle.TWEAK_FREE_CAMERA.getBooleanValue())
         {
             return CameraSubmersionType.NONE;
         }
 
-        return original;
+        return camera.getSubmersionType();
     }
 
     @Redirect(method = "updateTargetedEntity", at = @At(value = "INVOKE",

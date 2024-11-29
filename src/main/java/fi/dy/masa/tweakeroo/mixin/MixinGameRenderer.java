@@ -3,9 +3,9 @@ package fi.dy.masa.tweakeroo.mixin;
 import java.util.function.Predicate;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
-import net.minecraft.block.enums.CameraSubmersionType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
+import net.minecraft.client.render.CameraSubmersionType;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
@@ -88,7 +89,7 @@ public abstract class MixinGameRenderer
 
     @ModifyExpressionValue(
             method = "getFov",  at = @At(value = "INVOKE",
-            target = "Lnet/minecraft/client/render/Camera;getSubmersionType()Lnet/minecraft/block/enums/CameraSubmersionType;"))
+            target = "Lnet/minecraft/client/render/Camera;getSubmersionType()Lnet/minecraft/client/render/CameraSubmersionType;"))
     private CameraSubmersionType ignoreSubmersionTypeOnFreeCamera(CameraSubmersionType original)
     {
         if (FeatureToggle.TWEAK_FREE_CAMERA.getBooleanValue())

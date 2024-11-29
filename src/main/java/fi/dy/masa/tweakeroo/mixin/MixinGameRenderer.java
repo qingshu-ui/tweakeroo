@@ -7,6 +7,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.CameraSubmersionType;
 import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.decoration.AbstractDecorationEntity;
@@ -53,7 +54,7 @@ public abstract class MixinGameRenderer
 
     @Redirect(method = "renderWorld", require = 0, at = @At(value = "INVOKE",
               target = "Lnet/minecraft/client/render/GameRenderer;bobView(Lnet/minecraft/client/util/math/MatrixStack;F)V"))
-    private void disableWorldViewBob(GameRenderer renderer, MatrixStack matrices, float tickDelta)
+    private void disableWorldViewBob(GameRenderer instance, MatrixStack matrices, float tickDelta)
     {
         if (Configs.Disable.DISABLE_WORLD_VIEW_BOB.getBooleanValue() == false)
         {

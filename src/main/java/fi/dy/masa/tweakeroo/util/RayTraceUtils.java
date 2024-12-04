@@ -168,7 +168,7 @@ public class RayTraceUtils
                 }
 
                 if (ctx != null &&
-                    (ctx.inv() != null && !ctx.inv().isEmpty()))
+                   (ctx.inv() != null && !ctx.inv().isEmpty()))
                 {
                     lastBlockEntityContext = Pair.of(pos, ctx);
                     return ctx;
@@ -208,7 +208,7 @@ public class RayTraceUtils
             }
 
             if (ctx != null &&
-                (ctx.inv() != null && !ctx.inv().isEmpty()))
+               (ctx.inv() != null && !ctx.inv().isEmpty()))
             {
                 lastEntityContext = Pair.of(entity.getId(), ctx);
                 return ctx;
@@ -370,8 +370,8 @@ public class RayTraceUtils
             }
             // Fix for empty Villager/Piglin inv
             else if (inv != null && inv.size() == 8 &&
-                    nbt.contains(NbtKeys.INVENTORY) &&
-                    !nbt.getList(NbtKeys.INVENTORY, Constants.NBT.TAG_COMPOUND).isEmpty())
+                     nbt.contains(NbtKeys.INVENTORY) &&
+                     !nbt.getList(NbtKeys.INVENTORY, Constants.NBT.TAG_COMPOUND).isEmpty())
             {
                 inv2 = InventoryUtils.getNbtInventory(nbt, 8, entity.getRegistryManager());
                 inv = null;

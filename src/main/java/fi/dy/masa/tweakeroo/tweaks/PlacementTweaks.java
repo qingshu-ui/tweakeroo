@@ -8,6 +8,7 @@ import fi.dy.masa.malilib.util.restrictions.ItemRestriction;
 import fi.dy.masa.tweakeroo.config.Configs;
 import fi.dy.masa.tweakeroo.config.FeatureToggle;
 import fi.dy.masa.tweakeroo.config.Hotkeys;
+import fi.dy.masa.tweakeroo.mixin.IMixinAbstractBlock;
 import fi.dy.masa.tweakeroo.util.InventoryUtils;
 import fi.dy.masa.tweakeroo.util.*;
 import net.minecraft.block.Block;
@@ -335,7 +336,7 @@ public class PlacementTweaks
         if (FeatureToggle.TWEAK_PLACEMENT_REST_FIRST.getBooleanValue() && stateClickedOn == null)
         {
             BlockState state = world.getBlockState(posIn);
-            stackClickedOn = state.getBlock().getPickStack(world, posIn, state);
+            stackClickedOn = ((IMixinAbstractBlock) state.getBlock()).tweakeroo_getPickStack(world, posIn, state, false);
             stateClickedOn = state;
         }
 
@@ -606,7 +607,7 @@ public class PlacementTweaks
 
             if (stackClickedOn.isEmpty() == false)
             {
-                ItemStack stack = state.getBlock().getPickStack(world, pos, state);
+                ItemStack stack = ((IMixinAbstractBlock) state.getBlock()).tweakeroo_getPickStack(world, pos, state, false);
 
                 if (fi.dy.masa.malilib.util.InventoryUtils.areStacksEqual(stackClickedOn, stack) == false)
                 {
@@ -625,7 +626,7 @@ public class PlacementTweaks
         if (FeatureToggle.TWEAK_PLACEMENT_REST_HAND.getBooleanValue())
         {
             BlockState state = world.getBlockState(pos);
-            ItemStack stackClicked = state.getBlock().getPickStack(world, pos, state);
+            ItemStack stackClicked = ((IMixinAbstractBlock) state.getBlock()).tweakeroo_getPickStack(world, pos, state, false);
             ItemStack stackHand = player.getStackInHand(hand);
 
             return fi.dy.masa.malilib.util.InventoryUtils.areStacksEqual(stackClicked, stackHand);
@@ -895,7 +896,7 @@ public class PlacementTweaks
             Hand hand,
             @Nullable HitPart hitPart)
     {
-        Direction facing = Direction.fromHorizontal(MathHelper.floor((playerYaw * 4.0F / 360.0F) + 0.5D) & 3);
+        Direction facing = Direction.fromHorizontalQuarterTurns(MathHelper.floor((playerYaw * 4.0F / 360.0F) + 0.5D) & 3);
         Direction facingOrig = facing;
         float yawOrig = player.getYaw();
 
@@ -912,7 +913,7 @@ public class PlacementTweaks
             facing = facing.rotateYClockwise();
         }
 
-        float yaw = facing.asRotation();
+        float yaw = facing.getPositiveHorizontalDegrees();
         float pitch = player.getPitch();
         player.setYaw(yaw);
         player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookAndOnGround(yaw, pitch, player.isOnGround(), false));

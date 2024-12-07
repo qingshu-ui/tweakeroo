@@ -3,8 +3,8 @@ package fi.dy.masa.tweakeroo.util;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import com.llamalad7.mixinextras.lib.apache.commons.tuple.Pair;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -35,6 +35,7 @@ import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
 import fi.dy.masa.malilib.render.InventoryOverlay;
+import fi.dy.masa.malilib.util.InventoryUtils;
 import fi.dy.masa.malilib.util.*;
 import fi.dy.masa.tweakeroo.data.ServerDataSyncer;
 import fi.dy.masa.tweakeroo.mixin.IMixinAbstractHorseEntity;
@@ -166,8 +167,7 @@ public class RayTraceUtils
                     lastBlockEntityContext = null;
                 }
 
-                if (ctx != null &&
-                   (ctx.inv() != null && !ctx.inv().isEmpty()))
+                if (ctx != null && ctx.inv() != null)
                 {
                     lastBlockEntityContext = Pair.of(pos, ctx);
                     return ctx;
@@ -275,7 +275,7 @@ public class RayTraceUtils
 
                     if (enderPair != null && enderPair.getRight() != null && enderPair.getRight().contains(NbtKeys.ENDER_ITEMS))
                     {
-                        enderItems = fi.dy.masa.malilib.util.InventoryUtils.getPlayerEnderItemsFromNbt(enderPair.getRight(), world.getRegistryManager());
+                        enderItems = InventoryUtils.getPlayerEnderItemsFromNbt(enderPair.getRight(), world.getRegistryManager());
                     }
                     else
                     {
@@ -348,37 +348,36 @@ public class RayTraceUtils
 
             // Fix for empty horse inv
             if (inv != null &&
-                    nbt.contains(NbtKeys.ITEMS) &&
-                    nbt.getList(NbtKeys.ITEMS, Constants.NBT.TAG_COMPOUND).size() > 1)
+                nbt.contains(NbtKeys.ITEMS) &&
+                nbt.getList(NbtKeys.ITEMS, Constants.NBT.TAG_COMPOUND).size() > 1)
             {
                 if (entity instanceof AbstractHorseEntity)
                 {
-                    inv2 = fi.dy.masa.malilib.util.InventoryUtils.getNbtInventoryHorseFix(nbt, -1, entity.getRegistryManager());
+                    inv2 = InventoryUtils.getNbtInventoryHorseFix(nbt, -1, entity.getRegistryManager());
                 }
                 else
                 {
-                    inv2 = fi.dy.masa.malilib.util.InventoryUtils.getNbtInventory(nbt, -1, entity.getRegistryManager());
+                    inv2 = InventoryUtils.getNbtInventory(nbt, -1, entity.getRegistryManager());
                 }
                 inv = null;
             }
             // Fix for saddled horse, no inv
-            else if (inv != null &&
-                    nbt.contains(NbtKeys.SADDLE))
+            else if (inv != null && nbt.contains(NbtKeys.SADDLE))
             {
-                inv2 = fi.dy.masa.malilib.util.InventoryUtils.getNbtInventoryHorseFix(nbt, -1, entity.getRegistryManager());
+                inv2 = InventoryUtils.getNbtInventoryHorseFix(nbt, -1, entity.getRegistryManager());
                 inv = null;
             }
             // Fix for empty Villager/Piglin inv
             else if (inv != null && inv.size() == 8 &&
-                    nbt.contains(NbtKeys.INVENTORY) &&
-                    !nbt.getList(NbtKeys.INVENTORY, Constants.NBT.TAG_COMPOUND).isEmpty())
+                     nbt.contains(NbtKeys.INVENTORY) &&
+                     !nbt.getList(NbtKeys.INVENTORY, Constants.NBT.TAG_COMPOUND).isEmpty())
             {
-                inv2 = fi.dy.masa.malilib.util.InventoryUtils.getNbtInventory(nbt, 8, entity.getRegistryManager());
+                inv2 = InventoryUtils.getNbtInventory(nbt, 8, entity.getRegistryManager());
                 inv = null;
             }
             else
             {
-                inv2 = fi.dy.masa.malilib.util.InventoryUtils.getNbtInventory(nbt, inv != null ? inv.size() : -1, entity.getRegistryManager());
+                inv2 = InventoryUtils.getNbtInventory(nbt, inv != null ? inv.size() : -1, entity.getRegistryManager());
 
                 if (inv2 != null)
                 {

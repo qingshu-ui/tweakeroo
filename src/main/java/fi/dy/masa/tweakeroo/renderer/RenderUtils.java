@@ -354,7 +354,7 @@ public class RenderUtils
                 }
             }
 
-            //Tweakeroo.logger.warn("renderInventoryOverlay: type [{}] // Nbt Type [{}]", type.toString(), context.nbt() != null ? InventoryOverlay.getInventoryType(context.nbt()) : "INVALID");
+            //Tweakeroo.logger.warn("renderInventoryOverlay: type [{}] // Nbt Type [{}] // inv.isEmpty({})", type.toString(), context.nbt() != null ? InventoryOverlay.getInventoryType(context.nbt()) : "INVALID", inv.isEmpty());
 
             if (context.be() != null && context.be().getCachedState().getBlock() instanceof ShulkerBoxBlock sbb)
             {

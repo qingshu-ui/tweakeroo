@@ -1,6 +1,5 @@
 package fi.dy.masa.tweakeroo.mixin;
 
-import net.minecraft.client.option.GameOptions;
 import org.joml.Matrix4f;
 import org.objectweb.asm.Opcodes;
 
@@ -109,26 +108,6 @@ public abstract class MixinWorldRenderer
             int z = MathHelper.floor(camera.getPos().z) >> 4;
             CameraUtils.markChunksForRebuild(x, z, this.lastUpdatePosX, this.lastUpdatePosZ);
             // Could send this to ServuX in the future
-        }
-    }
-
-    @Redirect(
-        method = "*",
-        require = 0,
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/GameOptions;getClampedViewDistance()I")
-    )
-    private int getViewDistance(GameOptions options)
-    {
-        if (FeatureToggle.TWEAK_RENDER_EDGE_CHUNKS.getBooleanValue())
-        {
-            // In this way, the edge chunk is always rendered even if:
-            // + the chunks are outside the view distance
-            // + the camera is outside the view distance
-            return options.getClampedViewDistance() + 8;
-        }
-        else
-        {
-            return options.getClampedViewDistance();
         }
     }
 }

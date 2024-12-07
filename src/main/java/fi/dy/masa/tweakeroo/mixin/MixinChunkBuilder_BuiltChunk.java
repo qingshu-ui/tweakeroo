@@ -19,13 +19,4 @@ public abstract class MixinChunkBuilder_BuiltChunk
             cir.setReturnValue(true);
         }
     }
-
-    @Inject(method = "shouldBuild", at = @At("HEAD"), cancellable = true)
-    private void shouldBuild(CallbackInfoReturnable<Boolean> cir)
-    {
-        if (FeatureToggle.TWEAK_RENDER_EDGE_CHUNKS.getBooleanValue())
-        {
-            cir.setReturnValue(true);
-        }
-    }
 }

@@ -369,16 +369,7 @@ public class RenderUtils
                 horseInv.setStack(1, inv.getStack(0));
 
                 InventoryOverlay.renderInventoryBackground(type, xInv, yInv, 1, 2, mc);
-                /*
-                if (type == InventoryOverlay.InventoryRenderType.LLAMA)
-                {
-                    InventoryOverlay.renderLlamaArmorBackgroundSlots(horseInv, xInv + props.slotOffsetX, yInv + props.slotOffsetY, drawContext);
-                }
-                else
-                {
-                    InventoryOverlay.renderHorseArmorBackgroundSlots(horseInv, xInv + props.slotOffsetX, yInv + props.slotOffsetY, drawContext);
-                }
-                 */
+                InventoryOverlay.renderInventoryBackgroundSlots(type, horseInv, xInv + props.slotOffsetX, yInv + props.slotOffsetY, drawContext);
                 InventoryOverlay.renderInventoryStacks(type, horseInv, xInv + props.slotOffsetX, yInv + props.slotOffsetY, 1, 0, 2, mc, drawContext);
                 xInv += 32 + 4;
             }
@@ -386,6 +377,7 @@ public class RenderUtils
             if (totalSlots > 0)
             {
                 InventoryOverlay.renderInventoryBackground(type, xInv, yInv, props.slotsPerRow, totalSlots, mc);
+                // TODO 1.21.4+
                 /*
                 if (type == InventoryOverlay.InventoryRenderType.BREWING_STAND)
                 {
@@ -415,7 +407,7 @@ public class RenderUtils
             ItemStack wolfArmor = ((WolfEntity) entityLivingBase).getBodyArmor();
             wolfInv.setStack(0, wolfArmor != null && !wolfArmor.isEmpty() ? wolfArmor : ItemStack.EMPTY);
             InventoryOverlay.renderInventoryBackground(type, xInv, yInv, 1, 2, mc);
-            //InventoryOverlay.renderWolfArmorBackgroundSlots(wolfInv, xInv + props.slotOffsetX, yInv + props.slotOffsetY, drawContext);
+            InventoryOverlay.renderWolfArmorBackgroundSlots(wolfInv, xInv + props.slotOffsetX, yInv + props.slotOffsetY, drawContext);
             InventoryOverlay.renderInventoryStacks(type, wolfInv, xInv + props.slotOffsetX, yInv + props.slotOffsetY, 1, 0, 2, mc, drawContext);
         }
 

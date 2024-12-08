@@ -206,8 +206,7 @@ public class RayTraceUtils
                 lastEntityContext = null;
             }
 
-            if (ctx != null &&
-               (ctx.inv() != null && !ctx.inv().isEmpty()))
+            if (ctx != null && ctx.inv() != null)
             {
                 lastEntityContext = Pair.of(entity.getId(), ctx);
                 return ctx;
@@ -217,7 +216,9 @@ public class RayTraceUtils
                     (ctx.type() == InventoryOverlay.InventoryRenderType.WOLF ||
                      ctx.type() == InventoryOverlay.InventoryRenderType.VILLAGER ||
                      ctx.type() == InventoryOverlay.InventoryRenderType.HORSE ||
-                     ctx.type() == InventoryOverlay.InventoryRenderType.PLAYER))
+                     ctx.type() == InventoryOverlay.InventoryRenderType.PLAYER ||
+                     ctx.type() == InventoryOverlay.InventoryRenderType.ARMOR_STAND ||
+                     ctx.type() == InventoryOverlay.InventoryRenderType.LIVING_ENTITY))
             {
                 lastEntityContext = Pair.of(entity.getId(), ctx);
                 return ctx;

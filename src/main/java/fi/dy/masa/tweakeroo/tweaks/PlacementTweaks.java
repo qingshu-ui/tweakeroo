@@ -1,5 +1,7 @@
 package fi.dy.masa.tweakeroo.tweaks;
 
+import java.util.Optional;
+
 import fi.dy.masa.malilib.gui.Message;
 import fi.dy.masa.malilib.util.*;
 import fi.dy.masa.malilib.util.PositionUtils.HitPart;
@@ -9,8 +11,9 @@ import fi.dy.masa.tweakeroo.config.Configs;
 import fi.dy.masa.tweakeroo.config.FeatureToggle;
 import fi.dy.masa.tweakeroo.config.Hotkeys;
 import fi.dy.masa.tweakeroo.mixin.IMixinAbstractBlock;
-import fi.dy.masa.tweakeroo.util.InventoryUtils;
 import fi.dy.masa.tweakeroo.util.*;
+import fi.dy.masa.tweakeroo.util.InventoryUtils;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -509,12 +512,12 @@ public class PlacementTweaks
                         return ActionResult.PASS;
                     }
 
-                    Direction facingTmp = BlockUtils.getFirstPropertyFacingValue(state);
+                    Optional<Direction> facingTmp = fi.dy.masa.malilib.util.game.BlockUtils.getFirstPropertyFacingValue(state);
                     ////System.out.printf("accurate - sideIn: %s, state: %s, hit: %s, f: %s, posNew: %s\n", sideIn, state, hitVec, EnumFacing.getDirectionFromEntityLiving(posIn, player), posNew);
 
-                    if (facingTmp != null)
+                    if (facingTmp.isPresent())
                     {
-                        facing = facingTmp;
+                        facing = facingTmp.get();
                     }
                 }
                 else
@@ -542,13 +545,13 @@ public class PlacementTweaks
                 double x = hitVec.x;
                 int afterClickerClickCount = MathHelper.clamp(Configs.Generic.AFTER_CLICKER_CLICK_COUNT.getIntegerValue(), 0, 32);
 
-                if (handleAccurate && BlockUtils.isFacingValidForDirection(stack, facing))
+                if (handleAccurate && fi.dy.masa.malilib.util.game.BlockUtils.isFacingValidForDirection(stack, facing))
                 {
                     x = posNew.getX() + relX + 2 + (facing.getId() * 2);
                 }
-                else if (handleAccurate && BlockUtils.isFacingValidForOrientation(stack, facing))
+                else if (handleAccurate && fi.dy.masa.malilib.util.game.BlockUtils.isFacingValidForOrientation(stack, facing))
                 {
-                    int facingIndex = BlockUtils.getOrientationFacingIndex(stack, facing);
+                    int facingIndex = fi.dy.masa.malilib.util.game.BlockUtils.getOrientationFacingIndex(stack, facing);
 
                     if (facingIndex > 0)
                     {
@@ -762,7 +765,7 @@ public class PlacementTweaks
         // Carpet-Extra mod accurate block placement protocol support
         if (flexible && rotation && accurate == false &&
             Configs.Generic.ACCURATE_PLACEMENT_PROTOCOL.getBooleanValue() &&
-            BlockUtils.isFacingValidForDirection(stackOriginal, facing))
+            fi.dy.masa.malilib.util.game.BlockUtils.isFacingValidForDirection(stackOriginal, facing))
         {
             facing = facing.getOpposite(); // go from block face to click on to the requested facing
             //double relX = hitVecIn.x - posIn.getX();
@@ -779,13 +782,13 @@ public class PlacementTweaks
         }
         else if (flexible && rotation && accurate == false &&
                 Configs.Generic.ACCURATE_PLACEMENT_PROTOCOL.getBooleanValue() &&
-                BlockUtils.isFacingValidForOrientation(stackOriginal, facing))
+                fi.dy.masa.malilib.util.game.BlockUtils.isFacingValidForOrientation(stackOriginal, facing))
         {
             facing = facing.getOpposite(); // go from block face to click on to the requested facing
             //double relX = hitVecIn.x - posIn.getX();
             //double x = posIn.getX() + relX + 2 + (facing.getId() * 2);
 
-            int facingIndex = BlockUtils.getOrientationFacingIndex(stackOriginal, facing);
+            int facingIndex = fi.dy.masa.malilib.util.game.BlockUtils.getOrientationFacingIndex(stackOriginal, facing);
             double x;
             if (facingIndex >= 0)
             {

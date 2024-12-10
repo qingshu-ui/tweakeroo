@@ -36,6 +36,10 @@ public class PlacementHandler
             Properties.INVERTED,
             Properties.OPEN,
             //Properties.PERSISTENT,
+            // TODO --> TEST (Boolean)
+            Properties.POWERED,
+            Properties.LOCKED,
+            //Properties.WATERLOGGED
             // EnumProperty:
             // ATTACHMENT - Bells
             // AXIS - Pillar
@@ -56,6 +60,7 @@ public class PlacementHandler
             Properties.CHEST_TYPE,
             Properties.COMPARATOR_MODE,
             Properties.DOOR_HINGE,
+            Properties.FACING,
             Properties.HOPPER_FACING,
             Properties.HORIZONTAL_FACING,
             Properties.ORIENTATION,

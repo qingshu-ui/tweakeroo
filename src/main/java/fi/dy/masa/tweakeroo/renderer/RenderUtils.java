@@ -32,8 +32,9 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.MathHelper;
 
 import fi.dy.masa.malilib.render.InventoryOverlay;
-import fi.dy.masa.malilib.util.BlockUtils;
 import fi.dy.masa.malilib.util.GuiUtils;
+import fi.dy.masa.malilib.util.game.BlockUtils;
+import fi.dy.masa.malilib.util.nbt.NbtBlockUtils;
 import fi.dy.masa.tweakeroo.config.Configs;
 import fi.dy.masa.tweakeroo.util.MiscUtils;
 import fi.dy.masa.tweakeroo.util.SnapAimMode;
@@ -350,7 +351,7 @@ public class RenderUtils
                 }
                 else if (context.nbt() != null)
                 {
-                    lockedSlots = BlockUtils.getDisabledSlotsFromNbt(context.nbt());
+                    lockedSlots = NbtBlockUtils.getDisabledSlotsFromNbt(context.nbt());
                 }
             }
 

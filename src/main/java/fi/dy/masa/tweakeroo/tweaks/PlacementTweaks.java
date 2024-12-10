@@ -691,6 +691,7 @@ public class PlacementTweaks
                 // Don't allow taking stacks from elsewhere in the hotbar, if the cycle tweak is on
                 boolean allowHotbar = FeatureToggle.TWEAK_HOTBAR_SLOT_CYCLE.getBooleanValue() == false &&
                                       FeatureToggle.TWEAK_HOTBAR_SLOT_RANDOMIZER.getBooleanValue() == false;
+
                 InventoryUtils.restockNewStackToHand(player, hand, stackOriginal, allowHotbar);
             }
         }

@@ -232,7 +232,8 @@ public class PlacementHandler
         {
             for (Property<?> p : propList)
             {
-                if ((p instanceof DirectionProperty) == false &&
+                //if ((p instanceof DirectionProperty) == false &&
+                if (property.isPresent() && !property.get().equals(p) &&
                     WHITELISTED_PROPERTIES.contains(p))
                 {
                     @SuppressWarnings("unchecked")

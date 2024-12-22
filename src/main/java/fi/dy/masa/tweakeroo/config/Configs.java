@@ -46,6 +46,7 @@ public class Configs implements IConfigHandler
         public static final ConfigOptionList    BREAKING_RESTRICTION_MODE           = new ConfigOptionList  ("breakingRestrictionMode", PlacementRestrictionMode.LINE).apply(GENERIC_KEY);
         public static final ConfigBoolean       BUNDLE_DISPLAY_BACKGROUND_COLOR     = new ConfigBoolean     ("bundleDisplayBgColor", true).apply(GENERIC_KEY);
         public static final ConfigBoolean       BUNDLE_DISPLAY_REQUIRE_SHIFT        = new ConfigBoolean     ("bundleDisplayRequireShift", true).apply(GENERIC_KEY);
+        public static final ConfigInteger       BUNDLE_DISPLAY_ROW_WIDTH            = new ConfigInteger     ("bundleDisplayRowWidth", 9, 6, 9).apply(GENERIC_KEY);
         public static final ConfigColor         CHAT_BACKGROUND_COLOR               = new ConfigColor       ("chatBackgroundColor", "#80000000").apply(GENERIC_KEY);
         public static final ConfigString        CHAT_TIME_FORMAT                    = new ConfigString      ("chatTimeFormat", "[HH:mm:ss]").apply(GENERIC_KEY);
         public static final ConfigBoolean       CLIENT_PLACEMENT_ROTATION           = new ConfigBoolean     ("clientPlacementRotation", true).apply(GENERIC_KEY);
@@ -132,6 +133,7 @@ public class Configs implements IConfigHandler
                 ACCURATE_PLACEMENT_PROTOCOL,
                 BUNDLE_DISPLAY_BACKGROUND_COLOR,
                 BUNDLE_DISPLAY_REQUIRE_SHIFT,
+                BUNDLE_DISPLAY_ROW_WIDTH,
                 CLIENT_PLACEMENT_ROTATION,
                 DEBUG_LOGGING,
                 FAST_LEFT_CLICK_ALLOW_TOOLS,

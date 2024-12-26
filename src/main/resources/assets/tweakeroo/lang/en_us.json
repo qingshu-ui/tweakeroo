@@ -295,6 +295,7 @@
     "tweakeroo.config.disable.name.disableVillagerTradeLocking": "disableVillagerTradeLocking",
     "tweakeroo.config.disable.name.disableWallUnsprint": "disableWallUnsprint",
     "tweakeroo.config.disable.name.disableWorldViewBob": "disableWorldViewBob",
+    "tweakeroo.config.disable.name.disableDarkness": "disableDarkness",
 
     "tweakeroo.config.disable.comment.disableArmorStandRendering": "Disables all Armor Stand entity rendering",
     "tweakeroo.config.disable.comment.disableAxeStripping": "Disables stripping logs with an axe",
@@ -341,6 +342,7 @@
     "tweakeroo.config.disable.comment.disableVillagerTradeLocking": "Prevents villager trades from ever locking, by always incrementing\nthe max uses as well when the recipe uses is incremented",
     "tweakeroo.config.disable.comment.disableWallUnsprint": "Touching a wall doesn't drop you out from sprint mode",
     "tweakeroo.config.disable.comment.disableWorldViewBob": "Disables the view bob wobble effect of the world, but not the hand\nThis setting will fail if you have Iris installed.",
+    "tweakeroo.config.disable.comment.disableDarkness": "Disables darkness effect",
 
     "tweakeroo.config.disable.prettyName.disableArmorStandRendering": "Disable Armor Stand Rendering",
     "tweakeroo.config.disable.prettyName.disableAxeStripping": "Disable Axe Stripping",
@@ -387,6 +389,7 @@
     "tweakeroo.config.disable.prettyName.disableVillagerTradeLocking": "Disable Villager Trade Locking",
     "tweakeroo.config.disable.prettyName.disableWallUnsprint": "Disable Wall Unsprint",
     "tweakeroo.config.disable.prettyName.disableWorldViewBob": "Disable World View Bob",
+    "tweakeroo.config.disable.prettyName.disableDarkness": "Disable Darkness",
 
     "tweakeroo.config.internal.name.flySpeedPreset": "flySpeedPreset",
     "tweakeroo.config.internal.name.gammaValueOriginal": "gammaValueOriginal",
@@ -575,6 +578,7 @@
     "tweakeroo.config.feature_toggle.name.tweakWeaponSwitch": "tweakWeaponSwitch",
     "tweakeroo.config.feature_toggle.name.tweakYMirror": "tweakYMirror",
     "tweakeroo.config.feature_toggle.name.tweakZoom": "tweakZoom",
+    "tweakeroo.config.feature_toggle.name.tweakFakeNightVision": "tweakFakeNightVision",
 
     "tweakeroo.config.feature_toggle.prettyName.tweakAccurateBlockPlacement": "Accurate Block Placement",
     "tweakeroo.config.feature_toggle.prettyName.tweakAfterClicker": "After Clicker",
@@ -659,6 +663,7 @@
     "tweakeroo.config.feature_toggle.prettyName.tweakWeaponSwitch": "Weapon Switch",
     "tweakeroo.config.feature_toggle.prettyName.tweakYMirror": "Y Mirror",
     "tweakeroo.config.feature_toggle.prettyName.tweakZoom": "Camera Zoom",
+    "tweakeroo.config.feature_toggle.prettyName.tweakFakeNightVision": "Fake Night Vision",
 
     "tweakeroo.config.feature_toggle.comment.tweakAccurateBlockPlacement": "Enables a simpler version of Flexible placement, similar to\nthe Carpet mod, so basically either facing into or out\nfrom the block face clicked on.",
     "tweakeroo.config.feature_toggle.comment.tweakAfterClicker": "Enables a \"after clicker\" tweak, which does automatic right\nclicks on the just-placed block.\nUseful for example for Repeaters (setting the delay).\nTo quickly adjust the value, scroll while\nholding down the tweak toggle keybind.",
@@ -743,6 +748,7 @@
     "tweakeroo.config.feature_toggle.comment.tweakWeaponSwitch": "Enables automatically switching to a weapon for the targeted entity",
     "tweakeroo.config.feature_toggle.comment.tweakYMirror": "Mirrors the targeted y-position within the block bounds.\nThis is basically for placing slabs or stairs\nin the opposite top/bottom state from normal,\nif you have to place them against another slab for example.",
     "tweakeroo.config.feature_toggle.comment.tweakZoom": "Enables using the zoom hotkey to, well, zoom in",
+    "tweakeroo.config.feature_toggle.comment.tweakFakeNightVision": "Hack night vision",
 
     "tweakeroo.gui.button.config_gui.disables": "Yeets",
     "tweakeroo.gui.button.config_gui.fixes": "Fixes",

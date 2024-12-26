@@ -1,5 +1,17 @@
 package fi.dy.masa.tweakeroo.config;
 
+import fi.dy.masa.malilib.config.IConfigBoolean;
+import fi.dy.masa.malilib.config.options.ConfigBoolean;
+import fi.dy.masa.malilib.gui.GuiBase;
+import fi.dy.masa.malilib.hotkeys.*;
+import fi.dy.masa.malilib.interfaces.IValueChangeCallback;
+import fi.dy.masa.malilib.util.InfoUtils;
+import fi.dy.masa.malilib.util.StringUtils;
+import fi.dy.masa.tweakeroo.gui.GuiConfigs;
+import fi.dy.masa.tweakeroo.mixin.minecraft.IMixinAbstractBlock;
+import fi.dy.masa.tweakeroo.mixin.minecraft.IMixinSimpleOption;
+import fi.dy.masa.tweakeroo.tweaks.FakeNightVision;
+import fi.dy.masa.tweakeroo.util.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
@@ -10,27 +22,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import fi.dy.masa.malilib.config.IConfigBase;
-import fi.dy.masa.malilib.config.IConfigBoolean;
-import fi.dy.masa.malilib.config.IHotkeyTogglable;
-import fi.dy.masa.malilib.config.options.ConfigBoolean;
-import fi.dy.masa.malilib.gui.GuiBase;
-import fi.dy.masa.malilib.hotkeys.IHotkeyCallback;
-import fi.dy.masa.malilib.hotkeys.IKeybind;
-import fi.dy.masa.malilib.hotkeys.KeyAction;
-import fi.dy.masa.malilib.hotkeys.KeyCallbackAdjustable;
-import fi.dy.masa.malilib.hotkeys.KeyCallbackToggleBooleanConfigWithMessage;
-import fi.dy.masa.malilib.interfaces.IValueChangeCallback;
-import fi.dy.masa.malilib.util.InfoUtils;
-import fi.dy.masa.malilib.util.StringUtils;
-import fi.dy.masa.tweakeroo.gui.GuiConfigs;
-import fi.dy.masa.tweakeroo.mixin.IMixinAbstractBlock;
-import fi.dy.masa.tweakeroo.mixin.IMixinSimpleOption;
-import fi.dy.masa.tweakeroo.util.CameraEntity;
-import fi.dy.masa.tweakeroo.util.InventoryUtils;
-import fi.dy.masa.tweakeroo.util.MiscUtils;
-import fi.dy.masa.tweakeroo.util.PlacementRestrictionMode;
-import fi.dy.masa.tweakeroo.util.SnapAimMode;
 
 public class Callbacks
 {
@@ -121,6 +112,7 @@ public class Callbacks
         FeatureToggle.TWEAK_PERIODIC_HOLD_USE.getKeybind().setCallback(KeyCallbackAdjustableFeature.createCallback(FeatureToggle.TWEAK_PERIODIC_HOLD_USE));
 
         Configs.Disable.DISABLE_RENDERING_SCAFFOLDING.setValueChangeCallback((cfg) -> mc.worldRenderer.reload());
+        FeatureToggle.TWEAK_FAKE_NIGHT_VISION.setValueChangeCallback(new FakeNightVision(FeatureToggle.TWEAK_FAKE_NIGHT_VISION, mc));
     }
 
     public static class FeatureCallbackHold implements IValueChangeCallback<IConfigBoolean>

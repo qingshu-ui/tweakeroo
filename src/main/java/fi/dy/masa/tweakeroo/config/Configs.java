@@ -1,15 +1,9 @@
 package fi.dy.masa.tweakeroo.config;
 
-import java.io.File;
 import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.client.MinecraftClient;
-import fi.dy.masa.malilib.config.ConfigUtils;
-import fi.dy.masa.malilib.config.HudAlignment;
-import fi.dy.masa.malilib.config.IConfigBase;
-import fi.dy.masa.malilib.config.IConfigHandler;
-import fi.dy.masa.malilib.config.IHotkeyTogglable;
+import fi.dy.masa.malilib.config.*;
 import fi.dy.masa.malilib.config.options.*;
 import fi.dy.masa.malilib.util.ActiveMode;
 import fi.dy.masa.malilib.util.FileUtils;
@@ -19,10 +13,10 @@ import fi.dy.masa.malilib.util.restrictions.UsageRestriction.ListType;
 import fi.dy.masa.tweakeroo.Reference;
 import fi.dy.masa.tweakeroo.tweaks.MiscTweaks;
 import fi.dy.masa.tweakeroo.tweaks.PlacementTweaks;
-import fi.dy.masa.tweakeroo.util.EasyPlacementProtocol;
-import fi.dy.masa.tweakeroo.util.InventoryUtils;
-import fi.dy.masa.tweakeroo.util.PlacementRestrictionMode;
-import fi.dy.masa.tweakeroo.util.SnapAimMode;
+import fi.dy.masa.tweakeroo.util.*;
+import net.minecraft.client.MinecraftClient;
+
+import java.io.File;
 
 public class Configs implements IConfigHandler
 {
@@ -347,6 +341,7 @@ public class Configs implements IConfigHandler
         public static final ConfigBooleanHotkeyed       DISABLE_VILLAGER_TRADE_LOCKING  = new ConfigBooleanClient  ("disableVillagerTradeLocking",          false, "").apply(DISABLE_KEY);
         public static final ConfigBooleanHotkeyed       DISABLE_WALL_UNSPRINT           = new ConfigBooleanHotkeyed("disableWallUnsprint",                  false, "").apply(DISABLE_KEY);
         public static final ConfigBooleanHotkeyed       DISABLE_WORLD_VIEW_BOB          = new ConfigBooleanHotkeyed("disableWorldViewBob",                  false, "").apply(DISABLE_KEY);
+        public static final ConfigBooleanHotkeyed DISABLE_DARKNESS = new ConfigBooleanHotkeyed("disableDarkness", false, "").apply(DISABLE_KEY);
 
         public static final ImmutableList<IHotkeyTogglable> OPTIONS = ImmutableList.of(
                 DISABLE_ARMOR_STAND_RENDERING,
@@ -393,7 +388,8 @@ public class Configs implements IConfigHandler
                 DISABLE_TILE_ENTITY_TICKING,
                 DISABLE_VILLAGER_TRADE_LOCKING,
                 DISABLE_WALL_UNSPRINT,
-                DISABLE_WORLD_VIEW_BOB
+                DISABLE_WORLD_VIEW_BOB,
+                DISABLE_DARKNESS
         );
     }
 

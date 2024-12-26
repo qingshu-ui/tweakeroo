@@ -1,8 +1,9 @@
 {
   "required": true,
-  "package": "fi.dy.masa.tweakeroo.mixin",
+  "package": "fi.dy.masa.tweakeroo.mixin.minecraft",
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_17",
+  "plugin": "fi.dy.masa.tweakeroo.MixinPlugin",
   "client": [
     "IMixinAbstractBlock",
     "IMixinAbstractHorseEntity",
@@ -19,6 +20,7 @@
     "MixinAbstractInventoryScreen",
     "MixinAbstractSignEditScreen",
     "MixinBackgroundRenderer",
+    "MixinBackgroundRendererStatusEffectFogModifier",
     "MixinBatEntity",
     "MixinBeaconBlockEntityRenderer",
     "MixinBlockEntityRenderDispatcher",
@@ -56,6 +58,7 @@
     "MixinItemStack",
     "MixinKeyboardInput",
     "MixinLightingProvider",
+    "MixinLightmapTextureManager",
     "MixinLivingEntity",
     "MixinMinecraftClient",
     "MixinMobSpawnerBlockEntityRenderer",

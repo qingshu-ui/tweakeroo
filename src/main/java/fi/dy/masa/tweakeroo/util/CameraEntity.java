@@ -10,6 +10,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.stat.StatHandler;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import fi.dy.masa.tweakeroo.config.Configs;
@@ -23,6 +24,24 @@ public class CameraEntity extends ClientPlayerEntity
     private static boolean cullChunksOriginal;
     private static boolean sprinting;
     private static boolean originalCameraWasPlayer;
+    private HitResult crosshairTarget;
+    private Entity targetedEntity;
+
+    public  HitResult getCrosshairTarget() {
+        return this.crosshairTarget;
+    }
+
+    public void setCrosshairTarget(HitResult crosshairTarget) {
+        this.crosshairTarget = crosshairTarget;
+    }
+
+    public Entity getTargetedEntity() {
+        return targetedEntity;
+    }
+
+    public void setTargetedEntity(Entity targetedEntity) {
+        this.targetedEntity = targetedEntity;
+    }
 
     private CameraEntity(MinecraftClient mc, ClientWorld world,
                          ClientPlayNetworkHandler netHandler, StatHandler stats,

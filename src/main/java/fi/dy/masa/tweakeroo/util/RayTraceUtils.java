@@ -42,8 +42,8 @@ import fi.dy.masa.malilib.util.WorldUtils;
 import fi.dy.masa.malilib.util.nbt.NbtBlockUtils;
 import fi.dy.masa.malilib.util.nbt.NbtKeys;
 import fi.dy.masa.tweakeroo.data.ServerDataSyncer;
-import fi.dy.masa.tweakeroo.mixin.IMixinAbstractHorseEntity;
-import fi.dy.masa.tweakeroo.mixin.IMixinPiglinEntity;
+import fi.dy.masa.tweakeroo.mixin.minecraft.IMixinAbstractHorseEntity;
+import fi.dy.masa.tweakeroo.mixin.minecraft.IMixinPiglinEntity;
 
 public class RayTraceUtils
 {

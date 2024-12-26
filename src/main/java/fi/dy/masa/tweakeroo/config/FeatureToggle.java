@@ -103,7 +103,8 @@ public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfig
     TWEAK_TOOL_SWITCH               ("tweakToolSwitch",                     false, ""),
     TWEAK_WEAPON_SWITCH             ("tweakWeaponSwitch",                   false, ""),
     TWEAK_Y_MIRROR                  ("tweakYMirror",                        false, ""),
-    TWEAK_ZOOM                      ("tweakZoom",                           false, "",    KeybindSettings.INGAME_BOTH);
+    TWEAK_ZOOM("tweakZoom", false, "", KeybindSettings.INGAME_BOTH),
+    TWEAK_FAKE_NIGHT_VISION("tweakFakeNightVision", false, "");
 
     public static final ImmutableList<FeatureToggle> VALUES = ImmutableList.copyOf(values());
 

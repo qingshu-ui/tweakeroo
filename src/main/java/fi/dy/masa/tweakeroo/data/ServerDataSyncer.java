@@ -45,9 +45,9 @@ import fi.dy.masa.tweakeroo.Reference;
 import fi.dy.masa.tweakeroo.Tweakeroo;
 import fi.dy.masa.tweakeroo.config.Configs;
 import fi.dy.masa.tweakeroo.config.FeatureToggle;
-import fi.dy.masa.tweakeroo.mixin.IMixinAbstractHorseEntity;
-import fi.dy.masa.tweakeroo.mixin.IMixinDataQueryHandler;
-import fi.dy.masa.tweakeroo.mixin.IMixinPiglinEntity;
+import fi.dy.masa.tweakeroo.mixin.minecraft.IMixinAbstractHorseEntity;
+import fi.dy.masa.tweakeroo.mixin.minecraft.IMixinDataQueryHandler;
+import fi.dy.masa.tweakeroo.mixin.minecraft.IMixinPiglinEntity;
 import fi.dy.masa.tweakeroo.network.ServuxTweaksHandler;
 import fi.dy.masa.tweakeroo.network.ServuxTweaksPacket;
 

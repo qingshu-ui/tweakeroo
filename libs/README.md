@@ -1,0 +1,1 @@
+Download [EssentialGUI]("https://cdn.modrinth.com/data/EquRYbwe/versions/Zduw8zDo/EssentialGUI-1.10.1%2B1.21.jar") put here

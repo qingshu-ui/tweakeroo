@@ -83,7 +83,8 @@
     "MixinUpdateStructureBlockC2SPacket",
     "MixinWindow",
     "MixinWorld",
-    "MixinWorldRenderer"
+    "MixinWorldRenderer",
+    "MixinMilkBucketItem"
   ],
   "mixinPriority": 990,
   "injectors": {

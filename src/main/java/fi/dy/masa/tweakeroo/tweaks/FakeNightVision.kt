@@ -4,6 +4,8 @@ import fi.dy.masa.malilib.config.IConfigBoolean
 import fi.dy.masa.malilib.interfaces.IValueChangeCallback
 import fi.dy.masa.tweakeroo.config.FeatureToggle
 import net.minecraft.client.MinecraftClient
+import net.minecraft.client.network.ClientPlayerEntity
+import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 
@@ -18,6 +20,22 @@ class FakeNightVision(
         @JvmStatic
         fun onGameJoined(mc: MinecraftClient) {
             val player = mc.player ?: return
+            reApplyNightVision(player)
+        }
+
+        @JvmStatic
+        fun onEffectCleared(entity: LivingEntity) {
+            val player: ClientPlayerEntity = entity as? ClientPlayerEntity ?: return
+            reApplyNightVision(player)
+        }
+
+        @JvmStatic
+        fun onPlayerRespawned(client: MinecraftClient) {
+            val player = client.player ?: return
+            reApplyNightVision(player)
+        }
+
+        private fun reApplyNightVision(player: ClientPlayerEntity) {
             feature?.run {
                 if (this.booleanValue) {
                     if (!player.hasStatusEffect(StatusEffects.NIGHT_VISION)) {

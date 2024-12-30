@@ -112,7 +112,7 @@ public class Callbacks
         FeatureToggle.TWEAK_PERIODIC_HOLD_USE.getKeybind().setCallback(KeyCallbackAdjustableFeature.createCallback(FeatureToggle.TWEAK_PERIODIC_HOLD_USE));
 
         Configs.Disable.DISABLE_RENDERING_SCAFFOLDING.setValueChangeCallback((cfg) -> mc.worldRenderer.reload());
-        FeatureToggle.TWEAK_FAKE_NIGHT_VISION.setValueChangeCallback(new FakeNightVision(FeatureToggle.TWEAK_FAKE_NIGHT_VISION, mc));
+        FeatureToggle.TWEAK_FAKE_NIGHT_VISION.setValueChangeCallback(new FakeNightVision());
     }
 
     public static class FeatureCallbackHold implements IValueChangeCallback<IConfigBoolean>

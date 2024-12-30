@@ -10,10 +10,7 @@ import net.minecraft.client.option.Perspective;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +19,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class MixinLivingEntity extends Entity
@@ -77,21 +73,4 @@ public abstract class MixinLivingEntity extends Entity
             }
         }
     }
-
-    // fake night vision
-/*    @Inject(
-            method = "hasStatusEffect",
-            at = @At("HEAD"),
-            cancellable = true
-    )
-    private void onHasStatusEffect(RegistryEntry<StatusEffect> effect, CallbackInfoReturnable<Boolean> cir) {
-        MinecraftClient mc = MinecraftClient.getInstance();
-        if (FeatureToggle.TWEAK_FAKE_NIGHT_VISION.getBooleanValue()) {
-            LivingEntity self = (LivingEntity) (Object) this;
-            if (effect == StatusEffects.NIGHT_VISION &&
-                self == mc.player) {
-                cir.setReturnValue(true);
-            }
-        }
-    }*/
 }

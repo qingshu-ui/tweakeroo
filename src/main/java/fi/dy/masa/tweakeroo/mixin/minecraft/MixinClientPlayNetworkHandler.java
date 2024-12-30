@@ -114,7 +114,7 @@ public abstract class MixinClientPlayNetworkHandler extends ClientCommonNetworkH
         if(worldNotNull) {
             // game left
         }
-        FakeNightVision.onGameJoined(client);
+        FakeNightVision.onGameJoined();
     }
 
     @Inject(
@@ -122,6 +122,6 @@ public abstract class MixinClientPlayNetworkHandler extends ClientCommonNetworkH
             at = @At("TAIL")
     )
     private void onPlayerRespawnTail(PlayerRespawnS2CPacket packet, CallbackInfo ci) {
-        FakeNightVision.onPlayerRespawned(client);
+        FakeNightVision.onPlayerRespawned();
     }
 }

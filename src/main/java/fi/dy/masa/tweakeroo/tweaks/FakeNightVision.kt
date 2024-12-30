@@ -4,50 +4,37 @@ import fi.dy.masa.malilib.config.IConfigBoolean
 import fi.dy.masa.malilib.interfaces.IValueChangeCallback
 import fi.dy.masa.tweakeroo.config.FeatureToggle
 import net.minecraft.client.MinecraftClient
-import net.minecraft.client.network.ClientPlayerEntity
-import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 
-class FakeNightVision(
-    feature: FeatureToggle,
-    val mc: MinecraftClient
-) : IValueChangeCallback<IConfigBoolean> {
+private val mc: MinecraftClient = MinecraftClient.getInstance()
+
+class FakeNightVision : IValueChangeCallback<IConfigBoolean> {
 
     companion object {
-        var feature: FeatureToggle? = null
 
         @JvmStatic
-        fun onGameJoined(mc: MinecraftClient) {
-            val player = mc.player ?: return
-            reApplyNightVision(player)
+        fun onGameJoined() {
+            reApplyNightVision()
         }
 
         @JvmStatic
-        fun onEffectCleared(entity: LivingEntity) {
-            val player: ClientPlayerEntity = entity as? ClientPlayerEntity ?: return
-            reApplyNightVision(player)
+        fun onEffectCleared() {
+            reApplyNightVision()
         }
 
         @JvmStatic
-        fun onPlayerRespawned(client: MinecraftClient) {
-            val player = client.player ?: return
-            reApplyNightVision(player)
+        fun onPlayerRespawned() {
+            reApplyNightVision()
         }
 
-        private fun reApplyNightVision(player: ClientPlayerEntity) {
-            feature?.run {
-                if (this.booleanValue) {
-                    if (!player.hasStatusEffect(StatusEffects.NIGHT_VISION)) {
-                        player.addStatusEffect(StatusEffectInstance(StatusEffects.NIGHT_VISION, -1))
-                    }
+        private fun reApplyNightVision() {
+            mc.player?.run {
+                if (FeatureToggle.TWEAK_FAKE_NIGHT_VISION.booleanValue) {
+                    addStatusEffect(StatusEffectInstance(StatusEffects.NIGHT_VISION, -1))
                 }
             }
         }
-    }
-
-    init {
-        FakeNightVision.feature = feature
     }
 
     override fun onValueChanged(config: IConfigBoolean) {

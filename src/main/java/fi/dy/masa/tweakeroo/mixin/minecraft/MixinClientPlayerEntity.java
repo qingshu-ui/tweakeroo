@@ -1,6 +1,27 @@
 package fi.dy.masa.tweakeroo.mixin.minecraft;
 
+import com.mojang.authlib.GameProfile;
+import fi.dy.masa.tweakeroo.config.Configs;
+import fi.dy.masa.tweakeroo.config.FeatureToggle;
+import fi.dy.masa.tweakeroo.tweaks.FakeNightVision;
+import fi.dy.masa.tweakeroo.util.CameraEntity;
+import fi.dy.masa.tweakeroo.util.CameraUtils;
+import fi.dy.masa.tweakeroo.util.DummyMovementInput;
+import fi.dy.masa.tweakeroo.util.InventoryUtils;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.input.Input;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Hand;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -11,23 +32,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import com.mojang.authlib.GameProfile;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.input.Input;
-import net.minecraft.client.network.AbstractClientPlayerEntity;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.Hand;
-import fi.dy.masa.tweakeroo.config.Configs;
-import fi.dy.masa.tweakeroo.config.FeatureToggle;
-import fi.dy.masa.tweakeroo.util.CameraEntity;
-import fi.dy.masa.tweakeroo.util.CameraUtils;
-import fi.dy.masa.tweakeroo.util.DummyMovementInput;
-import fi.dy.masa.tweakeroo.util.InventoryUtils;
 
 @Mixin(ClientPlayerEntity.class)
 public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
@@ -214,6 +218,16 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
         if (CameraUtils.shouldPreventPlayerInputs())
         {
             ci.cancel();
+        }
+    }
+
+    @Inject(
+            method = "removeStatusEffectInternal",
+            at = @At("TAIL")
+    )
+    private void onRemoveStatusEffectInternal(RegistryEntry<StatusEffect> effect, CallbackInfoReturnable<StatusEffectInstance> cir) {
+        if (effect == StatusEffects.NIGHT_VISION) {
+            FakeNightVision.onEffectCleared();
         }
     }
 }

@@ -23,6 +23,6 @@ public abstract class MixinMilkBucketItem {
     )
     private void onFinishUsing(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
         // Notify fakeNightVision reapply NightVision when effect cleared.
-        FakeNightVision.onEffectCleared(user);
+        FakeNightVision.onEffectCleared();
     }
 }

@@ -46,7 +46,7 @@ dependencies {
     implementation("com.google.code.findbugs:jsr305:3.0.2")
 
     // modImplementation "fi.dy.masa.malilib:malilib-fabric-${project.minecraft_version_out}:${project.malilib_version}"
-    modImplementation("com.github.sakura-ryoko:malilib:$malilib_version")
+    modImplementation("com.github.qingshu-ui:malilib:$malilib_version")
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     // include(modApi(fabricApi.module("fabric-api-base", project.fabric_api_version)))
